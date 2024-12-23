@@ -24,7 +24,7 @@ public class PickUpAndDrop : PlayerAbstract
     {
         if (!InputManager.Instance.IsClick) return;
 
-        float pickUpDistance = 2f;
+        float pickUpDistance = 1.8f;
         if (this.pickUpAble == null) 
         {
             //Not carry an obj, try to pick it up
@@ -38,7 +38,7 @@ public class PickUpAndDrop : PlayerAbstract
         }
         else
         {
-            this.pickUpAble.Drop();
+            this.pickUpAble.Drop(this.playerCtrl.DropPoint);
             this.pickUpAble = null;
         }
     }

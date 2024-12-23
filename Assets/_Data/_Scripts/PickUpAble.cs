@@ -28,8 +28,8 @@ public class PickUpAble : MyMonoBehaviour
     protected virtual void ShiftObjToPlayerHand()
     {
         if (this.pickUpPoint == null) return;
-        Vector3 newPos = Vector3.Lerp(transform.position, this.pickUpPoint.position, Time.deltaTime * 20f);
-        this._rb.MovePosition(newPos);
+        Vector3 playerHand = Vector3.Lerp(transform.position, this.pickUpPoint.position, Time.deltaTime * 20f);
+        this._rb.MovePosition(playerHand);
     }
 
     public virtual void PickUp(Transform pickUpPoint)
@@ -38,9 +38,11 @@ public class PickUpAble : MyMonoBehaviour
         this._rb.useGravity = false;
     }
 
-    public virtual void Drop()
+    public virtual void Drop(Transform dropPoint)
     {
         this.pickUpPoint = null;
+        transform.position = dropPoint.position;
+
         this._rb.useGravity = true;
     }
 }
