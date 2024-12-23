@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpAndDrop : MyMonoBehaviour
+public class PickUpAndDrop : PlayerAbstract
 {
-    [SerializeField] protected Transform playerCamPos;
+    [Header("Pick Up And Drop")]
     [SerializeField] protected LayerMask pickUpLayer;
+    private PickUpAble pickUpAble;
+
+    protected override void ResetValue()
+    {
+        base.ResetValue();
+        this.pickUpLayer = LayerMask.GetMask("PickUpAbleObjs");
+    }
 
     protected override void Update()
     {
@@ -18,9 +25,21 @@ public class PickUpAndDrop : MyMonoBehaviour
         if (!InputManager.Instance.IsClick) return;
 
         float pickUpDistance = 2f;
-        if (Physics.Raycast(this.playerCamPos.position, this.playerCamPos.forward,out RaycastHit hit ,pickUpDistance, this.pickUpLayer))
+        if (this.pickUpAble == null) 
         {
-            Debug.Log(hit.transform);
+            //Not carry an obj, try to pick it up
+            if (Physics.Raycast(this.playerCtrl.PlayerCam.position, this.playerCtrl.PlayerCam.forward, out RaycastHit hit, pickUpDistance, this.pickUpLayer))
+            {
+                if (hit.transform.TryGetComponent(out this.pickUpAble))
+                {
+                    this.pickUpAble.PickUp(this.playerCtrl.PickUpPoint);
+                }
+            }
+        }
+        else
+        {
+            this.pickUpAble.Drop();
+            this.pickUpAble = null;
         }
     }
 }
