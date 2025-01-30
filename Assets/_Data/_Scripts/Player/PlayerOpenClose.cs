@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerOpenClose : PlayerInteract
 {
     [Header("Player Open Close Door")]
-    [SerializeField] protected DoorOpenClose doorOpenClose;
+    [SerializeField] protected OpenCloseAble openCloseAble;
 
     protected override void ResetValue()
     {
@@ -15,17 +15,17 @@ public class PlayerOpenClose : PlayerInteract
 
     protected override void OnInteract()
     {
-        this.ToggleOpenCloseDoor();
+        this.ToggleOpenClose();
     }
 
-    protected virtual void ToggleOpenCloseDoor()
+    protected virtual void ToggleOpenClose()
     {
         if (this.GetInteractObj().transform == null) return;
 
-        if(this.GetInteractObj().transform.TryGetComponent(out this.doorOpenClose))
+        if(this.GetInteractObj().transform.TryGetComponent(out this.openCloseAble))
         {
-            if (this.doorOpenClose.isOpen) this.doorOpenClose.Close();
-            else this.doorOpenClose.Open();    
+            if (this.openCloseAble.isOpen) this.openCloseAble.Close();
+            else this.openCloseAble.Open();    
         }
     }
 }

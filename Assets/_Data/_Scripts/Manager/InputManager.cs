@@ -8,7 +8,9 @@ public class InputManager : MyMonoBehaviour
     public static InputManager Instance => instance;
 
     [SerializeField] protected bool isClick;
+    [SerializeField] protected bool f_input;
     public bool IsClick => isClick;
+    public bool F_input => f_input;
 
     protected override void Awake()
     {
@@ -21,10 +23,16 @@ public class InputManager : MyMonoBehaviour
     {
         base.Update();
         this.GetMouseClick();
+        this.GetFClick();
     }
 
     protected virtual void GetMouseClick()
     {
         this.isClick = Input.GetMouseButtonDown(0);
+    }
+
+    protected virtual void GetFClick()
+    {
+        this.f_input = Input.GetKeyDown(KeyCode.F);
     }
 }
