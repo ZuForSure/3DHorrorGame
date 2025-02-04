@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class OpenCloseAble : MyMonoBehaviour
 {
+    [Header("Open Close Able")]
     [SerializeField] protected Animator animCtrl;
     public bool isOpen = false;
 
