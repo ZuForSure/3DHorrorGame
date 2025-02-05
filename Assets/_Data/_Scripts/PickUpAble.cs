@@ -13,11 +13,6 @@ public class PickUpAble : MyMonoBehaviour
         this.LoadRigibody();
     }
 
-    private void FixedUpdate()
-    {
-        this.ShiftObjToPlayerHand();
-    }
-
     protected virtual void LoadRigibody()
     {
         if (this._rb != null) return;
@@ -25,17 +20,12 @@ public class PickUpAble : MyMonoBehaviour
         Debug.Log(transform.name + ": LoadRigibody", gameObject);
     }
 
-    protected virtual void ShiftObjToPlayerHand()
-    {
-        if (this.pickUpPoint == null) return;
-        Vector3 playerHand = Vector3.Lerp(transform.position, this.pickUpPoint.position, Time.deltaTime * 20f);
-        this._rb.MovePosition(playerHand);
-    }
-
     public virtual void PickUp(Transform pickUpPoint)
     {
         this.pickUpPoint = pickUpPoint;
         this._rb.useGravity = false;
+
+        transform.gameObject.SetActive(false);
     }
 
     public virtual void Drop(Transform dropPoint)
@@ -44,5 +34,6 @@ public class PickUpAble : MyMonoBehaviour
         transform.position = dropPoint.position;
 
         this._rb.useGravity = true;
+        transform.gameObject.SetActive(true);
     }
 }

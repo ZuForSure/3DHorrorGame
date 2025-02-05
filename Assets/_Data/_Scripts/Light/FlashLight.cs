@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlashLight : MyMonoBehaviour
 {
     [SerializeField] protected GameObject flashLight;
+    [SerializeField] protected GameObject flashLightObj;
     [SerializeField] protected bool on, off;
 
     protected override void LoadComponents()
@@ -24,6 +25,8 @@ public class FlashLight : MyMonoBehaviour
     protected override void Update()
     {
         base.Update();
+        if (!this.HaveFlashLight()) return;
+
         this.ToggleFlashLight();
     }
 
@@ -31,7 +34,14 @@ public class FlashLight : MyMonoBehaviour
     {
         if (this.flashLight != null) return;
         this.flashLight = GameObject.Find("Flash Light");
+        this.flashLightObj = GameObject.Find("Flashlight Obj");
         Debug.Log(transform.name + ": LoadFlashLight", gameObject);
+    }
+
+    protected virtual bool HaveFlashLight()
+    {
+        if(Inventory.Instance.FindItem(this.flashLightObj.transform.name) == null) return false;
+        return true;
     }
 
     protected virtual void ToggleFlashLight()
@@ -49,5 +59,4 @@ public class FlashLight : MyMonoBehaviour
             this.off = false;
         }
     }
-
 }

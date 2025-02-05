@@ -7,10 +7,12 @@ public class PlayerController : MyMonoBehaviour
     [SerializeField] protected Transform playerCam;
     [SerializeField] protected Transform pickUpPoint;
     [SerializeField] protected Transform dropPoint;
+    [SerializeField] protected Transform axeInHand;
     [SerializeField] protected Inventory playerInven;
     public Transform PlayerCam => playerCam;
     public Transform PickUpPoint => pickUpPoint;
     public Transform DropPoint => dropPoint;
+    public Transform AxeInHand => axeInHand;
     public Inventory PlayerInven => playerInven;
 
     protected override void LoadComponents()
@@ -32,6 +34,7 @@ public class PlayerController : MyMonoBehaviour
     {
         if (this.pickUpPoint != null) return;
         this.pickUpPoint = this.playerCam.GetChild(0).transform;
+        this.axeInHand = this.pickUpPoint.GetChild(0).transform;
         this.dropPoint = this.playerCam.GetChild(1).transform;
         Debug.Log(transform.name + ": LoadPickUpPoint", gameObject);
     }

@@ -26,12 +26,14 @@ public class PlayerPickUpDrop : PlayerInteract
                 if (this.GetInteractObj().transform.TryGetComponent(out this.pickUpAble))
                 {
                     this.pickUpAble.PickUp(this.playerCtrl.PickUpPoint);
+                    this.playerCtrl.AxeInHand.gameObject.SetActive(true);
                 }
             }
         }
         else
         {
             this.pickUpAble.Drop(this.playerCtrl.DropPoint);
+            this.playerCtrl.AxeInHand.gameObject.SetActive(false);
             this.pickUpAble = null;
         }
     }
