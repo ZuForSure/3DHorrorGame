@@ -12,14 +12,16 @@ namespace NavKeypad
         [SerializeField] private UnityEvent onAccessGranted;
         [SerializeField] private UnityEvent onAccessDenied;
         [Header("Combination Code (9 Numbers Max)")]
-        [SerializeField] private int keypadCombo = 12345;
+        [SerializeField] protected int keypadCombo = 3004;
+
+        protected int maxSize = 4;
 
         public UnityEvent OnAccessGranted => onAccessGranted;
         public UnityEvent OnAccessDenied => onAccessDenied;
 
         [Header("Settings")]
-        [SerializeField] private string accessGrantedText = "Granted";
-        [SerializeField] private string accessDeniedText = "Denied";
+        [SerializeField] private string accessGrantedText = "Open";
+        [SerializeField] private string accessDeniedText = "Wrong";
 
         [Header("Visuals")]
         [SerializeField] private float displayResultTime = 1f;
@@ -42,6 +44,7 @@ namespace NavKeypad
         private string currentInput;
         private bool displayingResult = false;
         private bool accessWasGranted = false;
+        public bool AccessWasGranted => accessWasGranted;
 
         private void Awake()
         {
@@ -61,7 +64,7 @@ namespace NavKeypad
                     CheckCombo();
                     break;
                 default:
-                    if (currentInput != null && currentInput.Length == 9) // 9 max passcode size 
+                    if (currentInput != null && currentInput.Length == this.maxSize) // 4 max passcode size 
                     {
                         return;
                     }
@@ -71,6 +74,7 @@ namespace NavKeypad
             }
 
         }
+
         public void CheckCombo()
         {
             if (int.TryParse(currentInput, out var currentKombo))
@@ -85,7 +89,6 @@ namespace NavKeypad
             {
                 Debug.LogWarning("Couldn't process input for some reason..");
             }
-
         }
 
         //mainly for animations 
