@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MyMonoBehaviour
 {
+    [SerializeField] protected PlayerPickUpDrop pickup;
     [SerializeField] protected Transform playerCam;
     [SerializeField] protected Transform pickUpPoint;
     [SerializeField] protected Transform dropPoint;
     [SerializeField] protected Transform axeInHand;
     [SerializeField] protected Inventory playerInven;
+    public PlayerPickUpDrop Pickup => pickup;
     public Transform PlayerCam => playerCam;
     public Transform PickUpPoint => pickUpPoint;
     public Transform DropPoint => dropPoint;
@@ -18,9 +20,17 @@ public class PlayerController : MyMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
+        this.LoadPlayerPickUp();
         this.LoadPlayerCam();
         this.LoadPickUpPoint();
         this.LoadPlayerInven();
+    }
+
+    protected virtual void LoadPlayerPickUp()
+    {
+        if (this.pickup != null) return;
+        this.pickup = transform.GetComponentInChildren<PlayerPickUpDrop>();
+        Debug.Log(transform.name + ": LoadPlayerPickUp", gameObject);
     }
 
     protected virtual void LoadPlayerCam()

@@ -4,11 +4,14 @@ public class PlayerPickUpDrop : PlayerInteract
 {
     [Header("Pick Up And Drop")]
     [SerializeField] protected PickUpAble pickUpAble;
+    [SerializeField] protected bool somethingOnHand = false;
+    public bool SometingOnHand => somethingOnHand;
 
     protected override void ResetValue()
     {
         base.ResetValue();
         this.interactLayer = LayerMask.GetMask("PickUpAbleObjs");
+        this.somethingOnHand = false;
     }
 
     protected override void OnInteract()
@@ -27,6 +30,7 @@ public class PlayerPickUpDrop : PlayerInteract
                 {
                     this.pickUpAble.PickUp(this.playerCtrl.PickUpPoint);
                     this.playerCtrl.AxeInHand.gameObject.SetActive(true);
+                    this.somethingOnHand = true;
                 }
             }
         }
@@ -34,6 +38,7 @@ public class PlayerPickUpDrop : PlayerInteract
         {
             this.pickUpAble.Drop(this.playerCtrl.DropPoint);
             this.playerCtrl.AxeInHand.gameObject.SetActive(false);
+            this.somethingOnHand = false;
             this.pickUpAble = null;
         }
     }
