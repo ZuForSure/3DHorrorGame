@@ -6,6 +6,7 @@ public class PlayerDoSomething : PlayerInteract
 {
     [Header("Player Do Something")]
     [SerializeField] protected InteractBarrel interactBarrel;
+    [SerializeField] protected FixedAble fixedAble;
 
     protected override void ResetValue()
     {
@@ -16,6 +17,7 @@ public class PlayerDoSomething : PlayerInteract
     protected override void OnInteract()
     {
         this.InteractWithBarrel();
+        this.InteractWithMotor();
     }
 
     protected virtual void InteractWithBarrel()
@@ -26,6 +28,17 @@ public class PlayerDoSomething : PlayerInteract
         {
             if (!this.playerCtrl.Pickup.SometingOnHand) return;
             this.interactBarrel.BreakTheBarrel();
+        }
+    }
+
+    protected virtual void InteractWithMotor()
+    {
+        if (this.GetInteractObj().transform == null) return;
+
+        if (this.GetInteractObj().transform.TryGetComponent(out this.fixedAble))
+        {
+            if (this.fixedAble.Sproket.activeSelf) return;
+            this.fixedAble.Fixed();
         }
     }
 }
