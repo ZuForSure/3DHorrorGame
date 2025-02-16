@@ -5,6 +5,7 @@ using UnityEngine;
 public class FixedAble : MyMonoBehaviour
 {
     [SerializeField] protected GameObject sproket;
+    [SerializeField] protected GameObject triggerShelf;
     [SerializeField] protected FinalDoor finalDoor;
     public GameObject Sproket => sproket;
 
@@ -25,6 +26,7 @@ public class FixedAble : MyMonoBehaviour
     {
         if (this.sproket != null) return;
         this.sproket = transform.GetChild(0).gameObject;
+        this.triggerShelf = GameObject.Find("Trigger Shelf");
         Debug.Log(transform.name + ": LoadSproket", gameObject);
     }
 
@@ -39,6 +41,7 @@ public class FixedAble : MyMonoBehaviour
     {
         if (Inventory.Instance.FindItem(this.sproket.name) == null) return;
         this.sproket.SetActive(true);
+        this.triggerShelf.SetActive(true);
         this.finalDoor.OpenFinalDoor();
     }
 }
