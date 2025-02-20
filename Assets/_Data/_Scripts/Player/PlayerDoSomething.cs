@@ -7,6 +7,7 @@ public class PlayerDoSomething : PlayerInteract
     [Header("Player Do Something")]
     [SerializeField] protected InteractBarrel interactBarrel;
     [SerializeField] protected FixedAble fixedAble;
+    [SerializeField] protected WriteTheDeath writeTheDeath;
 
     protected override void ResetValue()
     {
@@ -18,6 +19,7 @@ public class PlayerDoSomething : PlayerInteract
     {
         this.InteractWithBarrel();
         this.InteractWithMotor();
+        this.InteractWithDeadVictims();
     }
 
     protected virtual void InteractWithBarrel()
@@ -39,6 +41,16 @@ public class PlayerDoSomething : PlayerInteract
         {
             if (this.fixedAble.Sproket.activeSelf) return;
             this.fixedAble.Fixed();
+        }
+    }
+
+    protected virtual void InteractWithDeadVictims()
+    {
+        if (this.GetInteractObj().transform == null) return;
+
+        if (this.GetInteractObj().transform.TryGetComponent(out this.writeTheDeath))
+        {
+            this.writeTheDeath.Write();
         }
     }
 }

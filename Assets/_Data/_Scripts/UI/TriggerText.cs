@@ -5,13 +5,23 @@ using UnityEngine;
 
 public class TriggerText : MyMonoBehaviour
 {
-    [SerializeField] protected TextMeshProUGUI textMeshPro;
+    protected static TriggerText instance;
+    public static TriggerText Instance => instance;
+
+    public TextMeshProUGUI textMeshPro;
     [SerializeField] protected TextForInteract textInteract;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadText();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (instance != null) Debug.LogWarning("Only 1 TriggerText are allowed");
+        TriggerText.instance = this;
     }
 
     private void FixedUpdate()
