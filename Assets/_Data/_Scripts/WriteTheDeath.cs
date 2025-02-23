@@ -25,19 +25,10 @@ public class WriteTheDeath : MyMonoBehaviour
         if (this.isWrited) return;
 
         this.isWrited = true;
-        this.ChangeTheText();
-        this.CheckDoneMission();
-        TriggerText.Instance.textMeshPro.SetText("Done");
-    }
-
-    protected virtual void ChangeTheText()
-    {
         this.interactText.SetInteractText("Done");
-    }
 
-    protected virtual void CheckDoneMission()
-    {
         MissionManager.Instance.HaveDoneAllMissions();
+        TriggerText.Instance.textMeshPro.SetText("Done");
     }
 
     public virtual bool GetIsWrited()

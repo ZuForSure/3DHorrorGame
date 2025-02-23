@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MissionManager : MyMonoBehaviour
@@ -7,14 +8,16 @@ public class MissionManager : MyMonoBehaviour
     protected static MissionManager instance;
     public static MissionManager Instance => instance;
 
-    //[SerializeField] protected bool isUsedDrug = false;
     [SerializeField] protected bool doneMission = false;
+    public GameObject finalDoorCard;
     [SerializeField] protected List<WriteTheDeath> listMissions;
+    public List<WriteTheDeath> ListMissions => listMissions;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadMissions();
+        this.LoadCard();
     }
 
     protected override void Awake()
@@ -22,6 +25,8 @@ public class MissionManager : MyMonoBehaviour
         base.Awake();
         if (instance != null) Debug.LogWarning("Only 1 MissionManager are allowed");
         MissionManager.instance = this;
+
+        this.finalDoorCard.SetActive(false);
     }
 
     protected virtual void LoadMissions()
@@ -36,14 +41,27 @@ public class MissionManager : MyMonoBehaviour
         Debug.Log(transform.name + ": LoadMissions", gameObject);
     }
 
+    protected virtual void LoadCard()
+    {
+        if (this.finalDoorCard != null) return;
+        this.finalDoorCard = transform.GetChild(0).gameObject;
+        Debug.Log(transform.name + ": LoadCard", gameObject);
+    }
+
     public virtual void HaveDoneAllMissions()
     {
-        foreach(WriteTheDeath item in this.listMissions)
+        foreach(WriteTheDeath child in this.listMissions)
         {
-            if (item.GetIsWrited()) continue;
+            if (child.GetIsWrited()) continue;
             else return;
         }
 
         this.doneMission = true;
+        this.ActiveTheFinalDoorCard();
+    }
+
+    protected virtual void ActiveTheFinalDoorCard()
+    {
+        this.finalDoorCard.SetActive(true);
     }
 }

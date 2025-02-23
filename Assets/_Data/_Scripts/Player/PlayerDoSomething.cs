@@ -8,6 +8,7 @@ public class PlayerDoSomething : PlayerInteract
     [SerializeField] protected InteractBarrel interactBarrel;
     [SerializeField] protected FixedAble fixedAble;
     [SerializeField] protected WriteTheDeath writeTheDeath;
+    [SerializeField] protected FinalDoor finalDoor;
 
     protected override void ResetValue()
     {
@@ -20,6 +21,7 @@ public class PlayerDoSomething : PlayerInteract
         this.InteractWithBarrel();
         this.InteractWithMotor();
         this.InteractWithDeadVictims();
+        this.OpenFinalDoor();
     }
 
     protected virtual void InteractWithBarrel()
@@ -51,6 +53,16 @@ public class PlayerDoSomething : PlayerInteract
         if (this.GetInteractObj().transform.TryGetComponent(out this.writeTheDeath))
         {
             this.writeTheDeath.Write();
+        }
+    }
+
+    protected virtual void OpenFinalDoor()
+    {
+        if (this.GetInteractObj().transform == null) return;
+
+        if (this.GetInteractObj().transform.TryGetComponent(out this.finalDoor))
+        {
+            this.finalDoor.OpenFinalDoor();
         }
     }
 }
