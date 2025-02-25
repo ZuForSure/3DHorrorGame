@@ -11,8 +11,8 @@ namespace NavKeypad
         [Header("Events")]
         [SerializeField] private UnityEvent onAccessGranted;
         [SerializeField] private UnityEvent onAccessDenied;
-        [Header("Combination Code (9 Numbers Max)")]
-        [SerializeField] protected int keypadCombo = 3004;
+        [Header("Combination Code (4 Numbers Max)")]
+        [SerializeField] protected int keypadCombo = 7176;
 
         protected int maxSize = 4;
 

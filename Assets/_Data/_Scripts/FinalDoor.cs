@@ -6,6 +6,7 @@ public class FinalDoor : MyMonoBehaviour
 {
     [SerializeField] protected Animator anim;
     [SerializeField] protected TextForInteract textFinalDoor;
+    [SerializeField] protected FixedAble fixedAble;
     [SerializeField] protected string newText;
 
     protected override void LoadComponents()
@@ -13,6 +14,7 @@ public class FinalDoor : MyMonoBehaviour
         base.LoadComponents();
         this.LoadAnimator();
         this.LoadTextForInteract();
+        this.LoadFixedAble();
     }
 
     protected virtual void LoadAnimator()
@@ -29,8 +31,16 @@ public class FinalDoor : MyMonoBehaviour
         Debug.Log(transform.name + ": LoadTextForInteract", gameObject);
     }
 
+    protected virtual void LoadFixedAble()
+    {
+        if (this.fixedAble != null) return;
+        this.fixedAble = GameObject.Find("ElectricMotorAndCraddle").GetComponent<FixedAble>();
+        Debug.Log(transform.name + ": LoadFixedAble", gameObject);
+    }
+
     public virtual void OpenFinalDoor()
     {
+        if (!this.fixedAble.Sproket.activeSelf) return;
         if (Inventory.Instance.FindItem(MissionManager.Instance.finalDoorCard.name) == null) return;
         this.anim.SetTrigger("isOpen");
     }
