@@ -18,11 +18,6 @@ public class ShowGuide : MyMonoBehaviour
         this.LoadTextGuide();
     }
 
-    private void OnDisable()
-    {
-        this.ShowGuideText();
-    }
-
     protected virtual void LoadTextInteract()
     {
         if (this.textForInteract != null) return;
