@@ -32,9 +32,4 @@ public class BaseText : MyMonoBehaviour
         this.textInteractObj = transform.GetComponent<TextMeshProUGUI>();
         Debug.Log(transform.name + ": LoadText", gameObject);
     }
-
-    public virtual void SetText(string text)
-    {
-        this.textInteractObj.text = text;
-    }
 }
