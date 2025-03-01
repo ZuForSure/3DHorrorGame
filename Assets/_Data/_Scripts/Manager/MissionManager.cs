@@ -10,6 +10,7 @@ public class MissionManager : MyMonoBehaviour
 
     [SerializeField] protected bool doneMission = false;
     public GameObject finalDoorCard;
+    [SerializeField] protected JumpscareSpawn jumpscareSpawn;
     [SerializeField] protected List<WriteTheDeath> listMissions;
     public List<WriteTheDeath> ListMissions => listMissions;
 
@@ -18,6 +19,7 @@ public class MissionManager : MyMonoBehaviour
         base.LoadComponents();
         this.LoadMissions();
         this.LoadCard();
+        this.LoadJumpscareSpawn();
     }
 
     protected override void Awake()
@@ -48,6 +50,13 @@ public class MissionManager : MyMonoBehaviour
         Debug.Log(transform.name + ": LoadCard", gameObject);
     }
 
+    protected virtual void LoadJumpscareSpawn()
+    {
+        if (this.jumpscareSpawn != null) return;
+        this.jumpscareSpawn = GameObject.Find("Jumpscare Spawn").GetComponent<JumpscareSpawn>();
+        Debug.Log(transform.name + ": LoadJumpscareSpawn", gameObject);
+    }
+
     public virtual void HaveDoneAllMissions()
     {
         foreach(WriteTheDeath child in this.listMissions)
@@ -58,6 +67,7 @@ public class MissionManager : MyMonoBehaviour
 
         this.doneMission = true;
         this.ActiveTheFinalDoorCard();
+        this.jumpscareSpawn.Spawn();
     }
 
     protected virtual void ActiveTheFinalDoorCard()
