@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LightSwitch : MyMonoBehaviour
@@ -35,6 +33,7 @@ public class LightSwitch : MyMonoBehaviour
         this.pointLight.SetActive(true);
         this.on = true; 
         this.off = false;
+        AudioManager.Instance.PlayAudioClip("Flashlight");
     }
 
     public virtual void TurnOff() 
@@ -42,5 +41,6 @@ public class LightSwitch : MyMonoBehaviour
         this.pointLight.SetActive(false);
         this.off = true;
         this.on = false;
+        AudioManager.Instance.PlayAudioClip("Flashlight");
     }
 }

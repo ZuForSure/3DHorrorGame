@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OpenCloseWithLocked : OpenCloseAble
@@ -15,6 +13,7 @@ public class OpenCloseWithLocked : OpenCloseAble
         {
             this.status = false;
             this.SetTextLockedDoor();
+            this.PlayLockedSound();
             return;
         }
 
@@ -25,5 +24,10 @@ public class OpenCloseWithLocked : OpenCloseAble
     protected virtual void SetTextLockedDoor()
     {
         TriggerText.Instance.textMeshPro.SetText(this.lockedDoorText);
+    }
+
+    protected virtual void PlayLockedSound()
+    {
+        AudioManager.Instance.PlayAudioClip("LockedDoor");
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FixedAble : MyMonoBehaviour
@@ -50,10 +48,13 @@ public class FixedAble : MyMonoBehaviour
     public virtual void Fixed()
     {
         if (Inventory.Instance.FindItem(this.sproket.name) == null) return;
+
         this.sproket.SetActive(true);
         this.triggerShelf.SetActive(true);
         this.textMotor.SetInteractText(this.newtextMotor);
+
         TriggerText.Instance.textMeshPro.SetText(this.newtextMotor);
+        AudioManager.Instance.PlayAudioClip("Fix");
 
         this.finalDoor.SetTextFinalDoor();
     }

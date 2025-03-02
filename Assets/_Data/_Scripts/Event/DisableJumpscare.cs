@@ -30,6 +30,7 @@ public class DisableJumpscare : MyMonoBehaviour
     private IEnumerator DisableByAnimator()
     {
         this.anim.SetTrigger("isDisable");
+        AudioManager.Instance.PlayAudioClip("Jumpscare");
 
         yield return new WaitForSeconds(this.timer);
         transform.parent.gameObject.SetActive(false);

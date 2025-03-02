@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WriteTheDeath : MyMonoBehaviour
@@ -29,6 +27,7 @@ public class WriteTheDeath : MyMonoBehaviour
 
         MissionManager.Instance.HaveDoneAllMissions();
         TriggerText.Instance.textMeshPro.SetText("Done");
+        AudioManager.Instance.PlayAudioClip("Write");
     }
 
     public virtual bool GetIsWrited()

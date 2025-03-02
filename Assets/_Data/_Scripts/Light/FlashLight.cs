@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FlashLight : MyMonoBehaviour
@@ -51,12 +49,14 @@ public class FlashLight : MyMonoBehaviour
             this.flashLight.SetActive(false);
             this.on = false;
             this.off = true;
+            AudioManager.Instance.PlayAudioClip("Flashlight");
         } 
         else if(this.off && InputManager.Instance.F_input)
         {
             this.flashLight.SetActive(true);
             this.on = true;
             this.off = false;
+            AudioManager.Instance.PlayAudioClip("Flashlight");
         }
     }
 }
