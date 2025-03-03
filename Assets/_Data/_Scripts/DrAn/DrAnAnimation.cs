@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrAnAnimation : MyMonoBehaviour
 {
     [SerializeField] protected Animator animTor;
-    [SerializeField] protected bool isRunning = false;
+    public bool isRunning = false;
 
     protected override void LoadComponents()
     {

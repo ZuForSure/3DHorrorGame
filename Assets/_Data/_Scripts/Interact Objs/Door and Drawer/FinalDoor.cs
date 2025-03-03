@@ -7,7 +7,9 @@ public class FinalDoor : MyMonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] protected TextForInteract textFinalDoor;
     [SerializeField] protected FixedAble fixedAble;
+    [SerializeField] protected DrAnMovement drAnMovement;
     [SerializeField] protected string newText;
+    [SerializeField] protected string meetDrAnText;
 
     protected override void LoadComponents()
     {
@@ -15,6 +17,7 @@ public class FinalDoor : MyMonoBehaviour
         this.LoadAnimator();
         this.LoadTextForInteract();
         this.LoadFixedAble();
+        this.LoadDrAnMovement();
     }
 
     protected virtual void LoadAnimator()
@@ -38,10 +41,23 @@ public class FinalDoor : MyMonoBehaviour
         Debug.Log(transform.name + ": LoadFixedAble", gameObject);
     }
 
+    protected virtual void LoadDrAnMovement()
+    {
+        if (this.drAnMovement != null) return;
+        this.drAnMovement = GameObject.Find("DrAn").GetComponent<DrAnMovement>();
+        Debug.Log(transform.name + ": LoadDrAnMovement", gameObject);
+    }
+
     public virtual void OpenFinalDoor()
     {
         if (!this.fixedAble.Sproket.activeSelf) return;
         if (Inventory.Instance.FindItem(MissionManager.Instance.finalDoorCard.name) == null) return;
+        if (!this.drAnMovement.canOpenFinalDoor)
+        {
+            TriggerText.Instance.textMeshPro.SetText(this.meetDrAnText);
+            return;
+        }
+            
         this.anim.SetTrigger("isOpen");
     }
     
