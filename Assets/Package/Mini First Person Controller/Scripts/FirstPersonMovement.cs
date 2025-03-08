@@ -7,6 +7,7 @@ public class FirstPersonMovement : MonoBehaviour
 
     [Header("Running")]
     public bool canRun = true;
+    public bool canWalk = true;
     public bool IsRunning { get; private set; }
     public float runSpeed = 9;
     public KeyCode runningKey = KeyCode.LeftShift;
@@ -25,6 +26,8 @@ public class FirstPersonMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!this.canWalk) return;
+
         // Update IsRunning from input.
         IsRunning = canRun && Input.GetKey(runningKey);
 
