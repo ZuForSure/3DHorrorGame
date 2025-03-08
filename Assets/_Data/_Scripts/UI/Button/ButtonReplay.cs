@@ -7,6 +7,6 @@ public class ButtonReplay : BaseButton
 {
     protected override void OnClick()
     {
-        SceneManager.LoadScene("MenuStart");
+        SceneManager.LoadSceneAsync("MenuStart");
     }
 }
