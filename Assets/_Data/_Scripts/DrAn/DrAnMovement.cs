@@ -8,7 +8,7 @@ public class DrAnMovement : MyMonoBehaviour
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Transform target;
     [SerializeField] protected DrAnDoor drAnDoor;
-    [SerializeField] protected DrAnAnimation drAnAnim;
+    [SerializeField] protected Animator drAnAnim;
     [SerializeField] protected float delay = 2f;
     public bool canOpenFinalDoor = false;
 
@@ -34,7 +34,7 @@ public class DrAnMovement : MyMonoBehaviour
     protected virtual void LoadAnim()
     {
         if (this.drAnAnim != null) return;
-        this.drAnAnim = GetComponent<DrAnAnimation>();
+        this.drAnAnim = GetComponent<Animator>();
         Debug.Log(transform.name + ": LoadAnim", gameObject);
     }
 
@@ -47,7 +47,7 @@ public class DrAnMovement : MyMonoBehaviour
     protected IEnumerator SetDrAnTarget()
     {
         yield return new WaitForSeconds(this.delay);
-        this.drAnAnim.isRunning = true;
+        this.drAnAnim.SetTrigger("isRun");
         this.canOpenFinalDoor = true;
         this.agent.SetDestination(this.target.transform.position);
     }
