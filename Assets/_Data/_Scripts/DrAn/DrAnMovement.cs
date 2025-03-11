@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public class DrAnMovement : MyMonoBehaviour
 {
-    [SerializeField] protected NavMeshAgent agent;
+    public NavMeshAgent agent;
     [SerializeField] protected Transform target;
     [SerializeField] protected DrAnDoor drAnDoor;
     [SerializeField] protected Animator drAnAnim;
     [SerializeField] protected float delay = 2f;
+    [SerializeField] protected float speed = 4f;
     public bool canOpenFinalDoor = false;
 
     protected override void LoadComponents()
@@ -19,7 +20,7 @@ public class DrAnMovement : MyMonoBehaviour
         this.LoadAnim();
     }
 
-    private void FixedUpdate()
+    protected override void Update()
     {
         this.CheckOpenDrAnDoor();
     }
@@ -41,6 +42,7 @@ public class DrAnMovement : MyMonoBehaviour
     protected virtual void CheckOpenDrAnDoor()
     {
         if (!this.drAnDoor.canSetTarget) return;
+
         StartCoroutine(this.SetDrAnTarget());
     }
 
@@ -49,6 +51,7 @@ public class DrAnMovement : MyMonoBehaviour
         yield return new WaitForSeconds(this.delay);
         this.drAnAnim.SetTrigger("isRun");
         this.canOpenFinalDoor = true;
+        this.agent.isStopped = false;
         this.agent.SetDestination(this.target.transform.position);
     }
 }

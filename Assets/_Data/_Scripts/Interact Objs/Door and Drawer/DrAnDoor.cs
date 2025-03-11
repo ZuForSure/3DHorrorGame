@@ -28,4 +28,11 @@ public class DrAnDoor : OpenCloseAble
         this.canSetTarget = true;
         base.Open();
     }
+
+    public override void Close()
+    {
+        this.canSetTarget = false;
+
+        base.Close();   
+    }
 }
