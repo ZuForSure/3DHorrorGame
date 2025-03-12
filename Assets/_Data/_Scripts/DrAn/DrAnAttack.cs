@@ -6,6 +6,7 @@ public class DrAnAttack : MyMonoBehaviour
 {
     [SerializeField] protected Animator drAnAnim;
     [SerializeField] protected DrAnMovement movement;
+    [SerializeField] protected FirstPersonMovement playerMovement;
     [SerializeField] protected GameObject playerCam;
     [SerializeField] protected GameObject gameOver;
 
@@ -14,6 +15,7 @@ public class DrAnAttack : MyMonoBehaviour
         base.LoadComponents();
         this.LoadAnim();
         this.LoadGameOver();
+        this.LoadFirstPersonMovement();
     }
 
     protected virtual void LoadAnim()
@@ -22,6 +24,13 @@ public class DrAnAttack : MyMonoBehaviour
         this.drAnAnim = transform.parent.GetComponent<Animator>();
         this.movement = transform.parent.GetComponent<DrAnMovement>();
         Debug.Log(transform.name + ": LoadAnim", gameObject);
+    }
+    
+    protected virtual void LoadFirstPersonMovement()
+    {
+        if (this.playerMovement != null) return;
+        this.playerMovement = GameObject.Find("Player Controller").GetComponent<FirstPersonMovement>();
+        Debug.Log(transform.name + ": LoadFirstPersonMovement", gameObject);
     }
 
     protected virtual void LoadGameOver()
@@ -37,6 +46,8 @@ public class DrAnAttack : MyMonoBehaviour
 
         Destroy(this.movement);
         Destroy(this.playerCam.GetComponent<FirstPersonLook>());
+
+        this.playerMovement.speed = 0;
         this.playerCam.transform.LookAt(transform);
         this.drAnAnim.SetTrigger("isAttack");
 

@@ -633,6 +633,8 @@ MonoBehaviour:
   animCtrl: {fileID: 79418920}
   isOpen: 0
   drAn: {fileID: 5082958795721206230}
+  bgSource: {fileID: 1878509624}
+  bgChase: {fileID: 8300000, guid: 53b70a28dda352e40bcd835210106448, type: 3}
   canSetTarget: 0
 --- !u!95 &79418920
 Animator:
@@ -13843,6 +13845,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a571fc5315dd3d4a8f4b817b64ef577, type: 3}
   - {fileID: 8300000, guid: 3c1d2bb02a9c88d4ebbd26c694676036, type: 3}
   - {fileID: 8300000, guid: 4a04501070383e640bfb232de9fbe064, type: 3}
+  - {fileID: 8300000, guid: 53b70a28dda352e40bcd835210106448, type: 3}
 --- !u!1001 &731080516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26048,6 +26051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drAnAnim: {fileID: 2187366238968788671}
   movement: {fileID: 8129302721011260362}
+  playerMovement: {fileID: 114963311841842655}
   playerCam: {fileID: 1593727802950007}
   gameOver: {fileID: 682384953}
 --- !u!136 &1436214303
@@ -50193,7 +50197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &6185937849415017844
 Animator:
   serializedVersion: 5

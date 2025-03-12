@@ -56,7 +56,15 @@ public class TriggerWinGame : MyMonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        SceneManager.LoadScene("WinGame");
-        this.animCtrlTrans.SetTrigger("transStr");
+        if (Inventory.Instance.FindItem("Drug"))
+        {
+            SceneManager.LoadScene("Win2");
+            this.animCtrlTrans.SetTrigger("transStr");
+        }
+        else
+        {
+            SceneManager.LoadScene("WinGame");
+            this.animCtrlTrans.SetTrigger("transStr");
+        }
     }
 }
