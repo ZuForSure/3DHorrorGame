@@ -10,6 +10,7 @@ public class TriggerText : MyMonoBehaviour
 
     public TextMeshProUGUI textMeshPro;
     [SerializeField] protected TextForInteract textInteract;
+    [SerializeField] protected ReadNote readNote;
 
     protected override void LoadComponents()
     {
@@ -51,9 +52,12 @@ public class TriggerText : MyMonoBehaviour
 
         this.textInteract = other.GetComponent<TextForInteract>();
         if (this.textInteract == null) return;
-
         this.textMeshPro.gameObject.SetActive(true);
         this.textMeshPro.SetText(this.textInteract.GetText());
+
+        this.readNote = other.GetComponent<ReadNote>();
+        if (this.readNote == null) return;
+        this.readNote.ShowNoteUI();
     }
 
     private void OnTriggerExit(Collider other)
@@ -62,5 +66,8 @@ public class TriggerText : MyMonoBehaviour
 
         this.textInteract = null;
         this.textMeshPro.gameObject.SetActive(false);
+
+        if (this.readNote == null) return;
+        this.readNote.HideNoteUI();
     }
 }
