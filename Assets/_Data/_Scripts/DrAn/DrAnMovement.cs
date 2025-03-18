@@ -10,7 +10,7 @@ public class DrAnMovement : MyMonoBehaviour
     [SerializeField] protected DrAnDoor drAnDoor;
     [SerializeField] protected Animator drAnAnim;
     [SerializeField] protected float delay = 2f;
-    [SerializeField] protected float speed = 4f;
+    //[SerializeField] protected float speed = 4f;
     public bool canOpenFinalDoor = false;
 
     protected override void LoadComponents()
