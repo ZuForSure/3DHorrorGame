@@ -7953,7 +7953,7 @@ MonoBehaviour:
   animCtrl: {fileID: 427642112}
   isOpen: 0
   requiredKey: {fileID: 1957428924}
-  lockedDoorText: it is locked
+  lockedDoorText: "c\u1EA7n ch\xECa kh\xF3a"
   status: 0
 --- !u!114 &427642115
 MonoBehaviour:
@@ -8954,6 +8954,7 @@ MonoBehaviour:
   isClick: 0
   f_input: 0
   tabInput: 0
+  eInput: 0
 --- !u!1001 &484691962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11653,7 +11654,7 @@ MonoBehaviour:
   animCtrl: {fileID: 628516483}
   isOpen: 0
   requiredKey: {fileID: 199543939}
-  lockedDoorText: it is locked
+  lockedDoorText: "ch\xECa kh\xF3a \u1EDF ph\xF2ng b\u1EC7nh 2"
   status: 0
 --- !u!114 &628516486
 MonoBehaviour:
@@ -12253,13 +12254,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652858710}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.916, y: 2.322, z: 6.66}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -19.537, y: 1.427, z: 9.573}
   m_LocalScale: {x: 0.001, y: 1, z: 0.79999995}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 589438469}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &652858712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12856,7 +12857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &682384954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20102,7 +20103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da226d08e2f6fd34f8f48d7a886e768e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: "c\u1EA7n th\u1EE9 g\xEC \u0111\xF3 \u0111\u1EC3 ph\xE1"
+  text: "c\u1EA7n th\u1EE9 g\xEC \u0111\xF3 \u0111\u1EC3 ph\xE1, \u0111\u1EBFn nh\xE0
+    kho t\xECm th\u1EED"
   guideIfNeed: 
 --- !u!4 &1075533772 stripped
 Transform:
@@ -22046,7 +22048,8 @@ MonoBehaviour:
   animCtrl: {fileID: 1164576030}
   isOpen: 0
   requiredKey: {fileID: 144587487}
-  lockedDoorText: it is locked
+  lockedDoorText: "c\u1EA7n t\xECm ch\xECa kh\xF3a, \u0111\u1EBFn s\u1EA3nh ch\xEDnh
+    xem sao"
   status: 0
 --- !u!114 &1164576033
 MonoBehaviour:
@@ -29779,7 +29782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1662149108
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31335,7 +31338,7 @@ MonoBehaviour:
   animCtrl: {fileID: 1720307046}
   isOpen: 0
   requiredKey: {fileID: 2032377032291462011}
-  lockedDoorText: it is locked
+  lockedDoorText: "c\u1EA7n ch\xECa kh\xF3a"
   status: 0
 --- !u!114 &1720307049
 MonoBehaviour:
@@ -33456,6 +33459,7 @@ MonoBehaviour:
   scripts:
   - "Bs.An: \u0111\u1EBFn ph\xF2ng 1 ghi t\xEAn b\u1EC7nh nh\xE2n \u0111i"
   - "[Tab] xem danh s\xE1ch b\u1EC7nh nh\xE2n"
+  - "Nh\u1EDB nh\u1EB7t th\u1EBB m\u1EDF c\u1EEDa khi ghi xong"
   scriptsNum: 0
 --- !u!1001 &1823756440
 PrefabInstance:
@@ -35195,6 +35199,7 @@ GameObject:
   - component: {fileID: 1957428926}
   - component: {fileID: 1957428925}
   - component: {fileID: 1957428930}
+  - component: {fileID: 1957428931}
   m_Layer: 9
   m_Name: Store K
   m_TagString: InteractObj
@@ -35341,7 +35346,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: "ch\xECa kh\xF3a nh\xE0 kho"
-  guideIfNeed: 
+  guideIfNeed: "c\xF3 th\u1EC3 m\u1EDF c\u1EEDa nh\xE0 kho r\u1ED3i"
+--- !u!114 &1957428931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957428923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edc40c64a0c29c43bd33ce2be5ba55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textForInteract: {fileID: 1957428930}
+  textForGuide: {fileID: 1558280297}
 --- !u!1 &1958154582
 GameObject:
   m_ObjectHideFlags: 0
@@ -38098,7 +38117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da226d08e2f6fd34f8f48d7a886e768e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: "r\xECu"
+  text: "[E] nh\u1EB7t/v\u1EE9t r\xECu"
   guideIfNeed: 
 --- !u!33 &33482547049078791
 MeshFilter:

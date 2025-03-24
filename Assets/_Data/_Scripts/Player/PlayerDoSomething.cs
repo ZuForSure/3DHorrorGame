@@ -32,7 +32,7 @@ public class PlayerDoSomething : PlayerInteract
 
         if (this.GetInteractObj().transform.TryGetComponent(out this.interactBarrel))
         {
-            if (!this.playerCtrl.Pickup.SometingOnHand) return;
+            if (!this.playerCtrl.Pickup.somethingOnHand) return;
             this.interactBarrel.BreakTheBarrel();
         }
     }

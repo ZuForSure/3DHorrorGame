@@ -10,9 +10,11 @@ public class InputManager : MyMonoBehaviour
     [SerializeField] protected bool isClick;
     [SerializeField] protected bool f_input;
     [SerializeField] protected bool tabInput;
+    [SerializeField] protected bool eInput;
     public bool IsClick => isClick;
     public bool F_input => f_input;
     public bool TabInput => tabInput;
+    public bool EInput => eInput;
 
     protected override void Awake()
     {
@@ -27,6 +29,7 @@ public class InputManager : MyMonoBehaviour
         this.GetMouseClick();
         this.GetFClick();
         this.GetTabDown();
+        this.GetEDown();
     }
 
     protected virtual void GetMouseClick()
@@ -42,5 +45,10 @@ public class InputManager : MyMonoBehaviour
     protected virtual void GetTabDown()
     {
         this.tabInput = Input.GetKeyDown(KeyCode.Tab);
+    }
+
+    protected virtual void GetEDown()
+    {
+        this.eInput = Input.GetKeyDown(KeyCode.E);
     }
 }

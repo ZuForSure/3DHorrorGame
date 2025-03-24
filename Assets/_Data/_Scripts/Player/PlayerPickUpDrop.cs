@@ -4,14 +4,19 @@ public class PlayerPickUpDrop : PlayerInteract
 {
     [Header("Pick Up And Drop")]
     [SerializeField] protected PickUpAble pickUpAble;
-    [SerializeField] protected bool somethingOnHand = false;
-    public bool SometingOnHand => somethingOnHand;
+    public bool somethingOnHand = false;
 
     protected override void ResetValue()
     {
         base.ResetValue();
         this.interactLayer = LayerMask.GetMask("PickUpAbleObjs");
         this.somethingOnHand = false;
+    }
+
+    protected override void CheckCanInteract()
+    {
+        if (!InputManager.Instance.EInput) return;
+        this.OnInteract();
     }
 
     protected override void OnInteract()
